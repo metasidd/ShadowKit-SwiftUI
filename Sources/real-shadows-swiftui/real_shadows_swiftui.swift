@@ -15,31 +15,18 @@ public struct RealShadow: ViewModifier {
         self.radius = radius
     }
     
-    private func shadowLayer(
-        content: Content,
-        radius: CGFloat,
-        opacity: Double
-    ) -> some View {
-        content
-            .shadow(
-                color: color.opacity(opacity),
-                radius: radius,
-                y: radius
-            )
-    }
-    
     public func body(content: Content) -> some View {
         content
-            // Layer 1: 1px
-            .modifier(InnerShadowLayer(content: content, color: color, radius: 1, opacity: 0.075))
-            // Layer 2: 2px
-            .modifier(InnerShadowLayer(content: content, color: color, radius: 2, opacity: 0.075))
-            // Layer 3: 4px
-            .modifier(InnerShadowLayer(content: content, color: color, radius: 4, opacity: 0.075))
-            // Layer 4: 8px
-            .modifier(InnerShadowLayer(content: content, color: color, radius: 8, opacity: 0.075))
-            // Layer 5: 16px
-            .modifier(InnerShadowLayer(content: content, color: color, radius: 16, opacity: 0.075))
+            // Layer 1: 1/16 of radius
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/16, opacity: 0.075))
+            // Layer 2: 1/8 of radius
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/8, opacity: 0.075))
+            // Layer 3: 1/4 of radius
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/4, opacity: 0.075))
+            // Layer 4: 1/2 of radius
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/2, opacity: 0.075))
+            // Layer 5: full radius
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius, opacity: 0.075))
     }
 }
 
