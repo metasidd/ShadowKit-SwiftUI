@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "real-shadows-swiftui",
     platforms: [
-        .iOS(.v16), 
+        .iOS(.v17), 
         .macOS(.v11)
     ],
     products: [

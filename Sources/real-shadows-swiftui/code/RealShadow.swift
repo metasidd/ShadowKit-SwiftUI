@@ -13,7 +13,7 @@ public struct RealShadow: ViewModifier {
     public init(
         color: Color = .black,
         radius: CGFloat = 8,
-        opacity: Double = 0.3,
+        opacity: Double = 0.4,
         xOffset: CGFloat = 0,
         yOffset: CGFloat = 0
     ) {
@@ -93,7 +93,7 @@ private struct InnerShadowLayer: ViewModifier {
             .shadow(
                 color: color.opacity(opacity),
                 radius: radius,
-                x: xOffset + radius,
+                x: xOffset,
                 y: yOffset + radius
             )
     }
