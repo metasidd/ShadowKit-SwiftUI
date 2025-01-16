@@ -13,7 +13,7 @@ public struct RealShadow: ViewModifier {
     public init(
         color: Color = .black,
         radius: CGFloat = 8,
-        opacity: Double = 0.25,
+        opacity: Double = 0.3,
         xOffset: CGFloat = 0,
         yOffset: CGFloat = 0
     ) {
@@ -30,34 +30,34 @@ public struct RealShadow: ViewModifier {
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/16,
+                radius: radius/8,
                 opacity: opacity,
-                xOffset: xOffset,
-                yOffset: yOffset
+                xOffset: xOffset/8,
+                yOffset: yOffset/8
             ))
             // Layer 2: 1/8 of radius
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/8,
+                radius: radius/4,
                 opacity: opacity,
-                xOffset: xOffset,
-                yOffset: yOffset
+                xOffset: xOffset/4,
+                yOffset: yOffset/4
             ))
             // Layer 3: 1/4 of radius
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/4,
+                radius: radius/2,
                 opacity: opacity,
-                xOffset: xOffset,
-                yOffset: yOffset
+                xOffset: xOffset/2,
+                yOffset: yOffset/2
             ))
             // Layer 4: 1/2 of radius
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/2,
+                radius: radius,
                 opacity: opacity,
                 xOffset: xOffset,
                 yOffset: yOffset
@@ -66,10 +66,10 @@ public struct RealShadow: ViewModifier {
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius,
+                radius: radius * 1.25,
                 opacity: opacity,
-                xOffset: xOffset,
-                yOffset: yOffset
+                xOffset: xOffset * 2,
+                yOffset: yOffset * 2
             ))
     }
 }
@@ -90,27 +90,5 @@ private struct InnerShadowLayer: ViewModifier {
                 x: xOffset,
                 y: yOffset + radius
             )
-    }
-}
-
-// Helper to make any Shape into type-erased AnyShape
-public extension Shape {
-    func eraseToAnyShape() -> AnyShape {
-        AnyShape(self)
-    }
-}
-
-// Type-erased shape wrapper
-public struct AnyShape: Shape, @unchecked Sendable {
-    private let makePath: @Sendable (CGRect) -> Path
-    
-    public init<S: Shape>(_ shape: S) {
-        self.makePath = { rect in
-            shape.path(in: rect)
-        }
-    }
-    
-    public func path(in rect: CGRect) -> Path {
-        makePath(rect)
     }
 }

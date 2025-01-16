@@ -12,37 +12,38 @@ struct TestShadow: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 40) {
+            VStack(alignment: .leading, spacing: 64) {
                 // Traditional shadow
                 Text("Traditional Shadow")
                     .padding(40)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .background {
-                        RoundedRectangle(cornerRadius: 16)
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
                             .fill(.white)
                     }
                     .compositingGroup()
                     .shadow(
-                        color: .black,
-                        radius: shadowRadius
+                        color: .purple,
+                        radius: shadowRadius,
+                        y: 12
                     )
                 
                 // Layered shadow
                 Text("Soft Shadow")
                     .padding(40)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .background {
-                        RoundedRectangle(cornerRadius: 16)
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
                             .fill(.white)
                     }
                     .compositingGroup()
                     .realShadow(
-                        color: .black,
+                        color: .purple,
                         radius: shadowRadius
                     )
             }
             .frame(maxHeight: .infinity, alignment: .top)
-            .padding(50)
+            .padding(64)
             
             // Radius control
             VStack(spacing: 8) {
@@ -59,8 +60,7 @@ struct TestShadow: View {
             .padding(.horizontal, 50)
             .padding(.bottom, 30)
         }
-        .preferredColorScheme(.light)
-        .background(Color(.systemBackground))
+        .background(Color.purple.opacity(0.25))
     }
 }
 
