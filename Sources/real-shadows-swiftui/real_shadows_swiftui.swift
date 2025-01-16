@@ -6,27 +6,30 @@ import SwiftUI
 public struct RealShadow: ViewModifier {
     private let color: Color
     private let radius: CGFloat
+    private let opacity: Double
     
     public init(
         color: Color = .black,
-        radius: CGFloat = 16
+        radius: CGFloat = 8,
+        opacity: Double = 0.075
     ) {
         self.color = color
         self.radius = radius
+        self.opacity = opacity
     }
     
     public func body(content: Content) -> some View {
         content
             // Layer 1: 1/16 of radius
-            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/16, opacity: 0.075))
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/16, opacity: opacity))
             // Layer 2: 1/8 of radius
-            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/8, opacity: 0.075))
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/8, opacity: opacity))
             // Layer 3: 1/4 of radius
-            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/4, opacity: 0.075))
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/4, opacity: opacity))
             // Layer 4: 1/2 of radius
-            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/2, opacity: 0.075))
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius/2, opacity: opacity))
             // Layer 5: full radius
-            .modifier(InnerShadowLayer(content: content, color: color, radius: radius, opacity: 0.075))
+            .modifier(InnerShadowLayer(content: content, color: color, radius: radius, opacity: opacity))
     }
 }
 
