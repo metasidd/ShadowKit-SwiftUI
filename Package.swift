@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "real-shadows-swiftui",
+    platforms: [
+        .iOS(.v16), 
+        .macOS(.v11)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
