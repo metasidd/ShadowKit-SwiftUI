@@ -23,9 +23,8 @@ struct TestShadow: View {
                     }
                     .compositingGroup()
                     .shadow(
-                        color: .black.opacity(0.3),
-                        radius: shadowRadius,
-                        y: 6
+                        color: .black,
+                        radius: shadowRadius
                     )
                 
                 // Layered shadow
@@ -37,7 +36,10 @@ struct TestShadow: View {
                             .fill(.white)
                     }
                     .compositingGroup()
-                    .realShadow(radius: shadowRadius)
+                    .realShadow(
+                        color: .black,
+                        radius: shadowRadius
+                    )
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(50)
