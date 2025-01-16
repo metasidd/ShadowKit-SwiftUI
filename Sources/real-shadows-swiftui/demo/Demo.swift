@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct TestShadow: View {
-    @State private var shadowRadius: CGFloat = 16
+    @State private var shadowRadius: CGFloat = 4
     @State private var xOffset: CGFloat = 0
     @State private var yOffset: CGFloat = 0
     
     var body: some View {
         VStack {
             cardStack
-            xOffsetControl
-            yOffsetControl
-            radiusControl
+            
+            VStack(spacing: 16) {
+                xOffsetControl
+                yOffsetControl
+                radiusControl
+            }
         }
         .background(Color.blue.opacity(0.25))
     }
@@ -66,7 +69,7 @@ struct TestShadow: View {
     }
     
     private var xOffsetControl: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
             Text("X Offset: \(Int(xOffset))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -82,7 +85,7 @@ struct TestShadow: View {
     }
     
     private var yOffsetControl: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
             Text("Y Offset: \(Int(yOffset))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -97,7 +100,7 @@ struct TestShadow: View {
     }
     
     private var radiusControl: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
             Text("Shadow Radius: \(Int(shadowRadius))")
                 .font(.caption)
                 .foregroundStyle(.secondary)

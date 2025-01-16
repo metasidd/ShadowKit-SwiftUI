@@ -24,49 +24,55 @@ public struct RealShadow: ViewModifier {
         self.yOffset = yOffset
     }
     
+    private func dynamicRadius(_ baseRadius: CGFloat) -> CGFloat {
+        let offsetMagnitude = sqrt(pow(xOffset, 2) + pow(yOffset, 2))
+        let radiusMultiplier = max(1.0, 1.0 + (offsetMagnitude / 32) * 0.5)
+        return baseRadius * radiusMultiplier
+    }
+    
     public func body(content: Content) -> some View {
         content
-            // Layer 1: 1/16 of radius
+            // Layer 1: Tight shadow
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/8,
+                radius: dynamicRadius(radius/8),
                 opacity: opacity,
                 xOffset: xOffset/8,
                 yOffset: yOffset/8
             ))
-            // Layer 2: 1/8 of radius
+            // Layer 2: Medium shadow
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/4,
+                radius: dynamicRadius(radius/4),
                 opacity: opacity,
                 xOffset: xOffset/4,
                 yOffset: yOffset/4
             ))
-            // Layer 3: 1/4 of radius
+            // Layer 3: Wide shadow
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius/2,
+                radius: dynamicRadius(radius/2),
                 opacity: opacity,
                 xOffset: xOffset/2,
                 yOffset: yOffset/2
             ))
-            // Layer 4: 1/2 of radius
+            // Layer 4: Broader shadow
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius,
+                radius: dynamicRadius(radius),
                 opacity: opacity,
                 xOffset: xOffset,
                 yOffset: yOffset
             ))
-            // Layer 5: full radius
+            // Layer 5: Broadest shadow
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: radius * 1.25,
+                radius: dynamicRadius(radius),
                 opacity: opacity,
                 xOffset: xOffset * 2,
                 yOffset: yOffset * 2
@@ -87,7 +93,7 @@ private struct InnerShadowLayer: ViewModifier {
             .shadow(
                 color: color.opacity(opacity),
                 radius: radius,
-                x: xOffset,
+                x: xOffset + radius,
                 y: yOffset + radius
             )
     }
