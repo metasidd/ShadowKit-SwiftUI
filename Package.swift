@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "real-shadows-swiftui",
+    name: "soft-shadows-swiftui",
     platforms: [
         .iOS(.v17), 
         .macOS(.v11)
@@ -12,14 +12,14 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "real-shadows-swiftui",
-            targets: ["real-shadows-swiftui"]),
+            name: "soft-shadows-swiftui",
+            targets: ["soft-shadows-swiftui"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "real-shadows-swiftui"),
+            name: "soft-shadows-swiftui"),
 
     ]
 )
