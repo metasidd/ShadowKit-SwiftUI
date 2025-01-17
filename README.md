@@ -34,7 +34,7 @@ struct ContentView: View {
         Rectangle()
             .fill(.white)
             .frame(width: 200, height: 200)
-            .realShadow(radius: 8)  // Default black shadow
+            .softShadow(radius: 8)  // Default black shadow
     }
 }
 ```
@@ -45,7 +45,7 @@ struct ContentView: View {
 Perfect for cards or elevated surfaces with minimal elevation:
 
 ```swift
-.realShadow(
+.softShadow(
     color: .black,
     radius: 4,
     x: 0,
@@ -57,7 +57,7 @@ Perfect for cards or elevated surfaces with minimal elevation:
 Ideal for floating elements or modals:
 
 ```swift
-.realShadow(
+.softShadow(
     color: .black.opacity(0.25),
     radius: 8,
     x: 0,
@@ -69,7 +69,7 @@ Ideal for floating elements or modals:
 For high-emphasis elements:
 
 ```swift
-.realShadow(
+.softShadow(
     color: .black,
     radius: 16,
     x: 4,
@@ -81,7 +81,7 @@ For high-emphasis elements:
 For creative effects:
 
 ```swift
-.realShadow(
+.softShadow(
     color: .blue.opacity(0.3),
     radius: 12,
     x: 8,
@@ -93,7 +93,7 @@ For creative effects:
 For simulating specific light sources:
 
 ```swift
-.realShadow(
+.softShadow(
     color: .black.opacity(0.2),
     radius: 10,
     x: -8,  // Negative X for left-side light source
@@ -117,7 +117,7 @@ struct ElevatedCard: View {
         .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(16)
-        .realShadow(
+        .softShadow(
             color: .black.opacity(0.2),
             radius: 12,
             x: 0,
@@ -140,7 +140,7 @@ struct ShadowDemo: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(.white)
                 .frame(width: 200, height: 200)
-                .realShadow(
+                .softShadow(
                     radius: shadowRadius,
                     x: xOffset,
                     y: yOffset

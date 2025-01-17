@@ -62,7 +62,7 @@ struct TestShadow: View {
                     .fill(.white)
             }
             .compositingGroup()
-            .realShadow(
+            .softShadow(
                 color: color,
                 radius: shadowRadius,
                 x: xOffset,

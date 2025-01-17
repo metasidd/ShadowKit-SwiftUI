@@ -9,7 +9,7 @@ public extension View {
     ///   - radius: The blur radius of the shadow. Defaults to 0.
     ///   - x: The horizontal offset of the shadow. Defaults to 0.
     ///   - y: The vertical offset of the shadow. Defaults to 0.
-    func realShadow(
+    func softShadow(
         color: Color = .black,
         radius: CGFloat = 0,
         x: CGFloat = 0,
