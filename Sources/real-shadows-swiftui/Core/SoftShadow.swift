@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-public struct RealShadow: ViewModifier {
+public struct SoftShadow: ViewModifier {
     private let color: Color
     private let radius: CGFloat
     private let opacity: Double

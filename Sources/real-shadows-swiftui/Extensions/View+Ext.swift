@@ -16,7 +16,7 @@ public extension View {
         y: CGFloat = 0
     ) -> some View {
         self.modifier(
-            RealShadow(
+            SoftShadow(
                 color: color,
                 radius: radius,
                 xOffset: x,
