@@ -6,3 +6,51 @@ DerivedData/
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+
+# macOS files
+.DS_Store
+
+# Xcode
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata   # Keep the actual workspace data if needed, remove if you want to ignore entirely
+*.xcuserdatad
+*.xcscmblueprint
+xcuserdata
+DerivedData/
+*.moved-aside
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+.swiftpm/
+
+# SwiftUI Previews & Logs
+*.swiftdoc
+*.swiftsourceinfo
+*.lldb
+
+# Swift Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Build artifacts
+build/
+*.o
+*.d
+*.bin
+*.bbl
+*.swp
+*.dep
+
+# Other
+*.DS_Store
+*.tmp
+*.env
+*.env.*
+
+# Xcode Generated Scheme Metadata (optional; remove if you keep shared schemes)
+*.xcscheme
+*.xccheckout
