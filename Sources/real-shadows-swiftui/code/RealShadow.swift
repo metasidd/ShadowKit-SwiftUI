@@ -78,23 +78,23 @@ public struct RealShadow: ViewModifier {
                 yOffset: yOffset
             ))
     }
-}
-
-private struct InnerShadowLayer: ViewModifier {
-    let content: Any
-    let color: Color
-    let radius: CGFloat
-    let opacity: Double
-    let xOffset: CGFloat
-    let yOffset: CGFloat
     
-    func body(content: Content) -> some View {
-        content
-            .shadow(
-                color: color.opacity(opacity),
-                radius: radius,
-                x: xOffset,
-                y: yOffset + radius
-            )
+    private struct InnerShadowLayer: ViewModifier {
+        let content: Any
+        let color: Color
+        let radius: CGFloat
+        let opacity: Double
+        let xOffset: CGFloat
+        let yOffset: CGFloat
+        
+        func body(content: Content) -> some View {
+            content
+                .shadow(
+                    color: color.opacity(opacity),
+                    radius: radius,
+                    x: xOffset,
+                    y: yOffset + radius
+                )
+        }
     }
 }
