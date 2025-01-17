@@ -38,8 +38,8 @@ public struct RealShadow: ViewModifier {
                 color: color,
                 radius: dynamicRadius(radius/16),
                 opacity: opacity,
-                xOffset: xOffset/8,
-                yOffset: yOffset/8
+                xOffset: xOffset/16,
+                yOffset: yOffset/16
             ))
             // Layer 2: Medium shadow
             .modifier(InnerShadowLayer(
@@ -47,8 +47,8 @@ public struct RealShadow: ViewModifier {
                 color: color,
                 radius: dynamicRadius(radius/8),
                 opacity: opacity,
-                xOffset: xOffset/4,
-                yOffset: yOffset/4
+                xOffset: xOffset/8,
+                yOffset: yOffset/8
             ))
             // Layer 3: Wide shadow
             .modifier(InnerShadowLayer(
@@ -56,8 +56,8 @@ public struct RealShadow: ViewModifier {
                 color: color,
                 radius: dynamicRadius(radius/4),
                 opacity: opacity,
-                xOffset: xOffset/2,
-                yOffset: yOffset/2
+                xOffset: xOffset/4,
+                yOffset: yOffset/4
             ))
             // Layer 4: Broader shadow
             .modifier(InnerShadowLayer(
@@ -65,8 +65,8 @@ public struct RealShadow: ViewModifier {
                 color: color,
                 radius: dynamicRadius(radius/2),
                 opacity: opacity,
-                xOffset: xOffset,
-                yOffset: yOffset
+                xOffset: xOffset/2,
+                yOffset: yOffset/2
             ))
             // Layer 5: Broadest shadow
             .modifier(InnerShadowLayer(
@@ -74,8 +74,8 @@ public struct RealShadow: ViewModifier {
                 color: color,
                 radius: dynamicRadius(radius),
                 opacity: opacity,
-                xOffset: xOffset * 2,
-                yOffset: yOffset * 2
+                xOffset: xOffset,
+                yOffset: yOffset
             ))
     }
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TestShadow: View {
-    @State private var shadowRadius: CGFloat = 16
+    @State private var color: Color = .blue
+    @State private var shadowRadius: CGFloat = 8
     @State private var xOffset: CGFloat = 0
     @State private var yOffset: CGFloat = 0
     
@@ -46,7 +47,7 @@ struct TestShadow: View {
             }
             .compositingGroup()
             .shadow(
-                color: .red,
+                color: color,
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset
@@ -62,7 +63,7 @@ struct TestShadow: View {
             }
             .compositingGroup()
             .realShadow(
-                color: .red,
+                color: color,
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset
