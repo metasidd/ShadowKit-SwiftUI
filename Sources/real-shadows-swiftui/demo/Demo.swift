@@ -39,7 +39,6 @@ struct TestShadow: View {
     
     private var traditionalCard: some View {
         Text("Traditional Shadow")
-            .padding(40)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -47,7 +46,7 @@ struct TestShadow: View {
             }
             .compositingGroup()
             .shadow(
-                color: .blue,
+                color: .red,
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset
@@ -56,7 +55,6 @@ struct TestShadow: View {
     
     private var softShadowCard: some View {
         Text("Soft Shadow")
-            .padding(40)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -64,7 +62,7 @@ struct TestShadow: View {
             }
             .compositingGroup()
             .realShadow(
-                color: .blue,
+                color: .red,
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset

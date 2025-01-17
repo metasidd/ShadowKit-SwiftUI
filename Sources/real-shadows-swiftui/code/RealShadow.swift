@@ -36,7 +36,7 @@ public struct RealShadow: ViewModifier {
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: dynamicRadius(radius/8),
+                radius: dynamicRadius(radius/16),
                 opacity: opacity,
                 xOffset: xOffset/8,
                 yOffset: yOffset/8
@@ -45,7 +45,7 @@ public struct RealShadow: ViewModifier {
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: dynamicRadius(radius/4),
+                radius: dynamicRadius(radius/8),
                 opacity: opacity,
                 xOffset: xOffset/4,
                 yOffset: yOffset/4
@@ -54,7 +54,7 @@ public struct RealShadow: ViewModifier {
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: dynamicRadius(radius/2),
+                radius: dynamicRadius(radius/4),
                 opacity: opacity,
                 xOffset: xOffset/2,
                 yOffset: yOffset/2
@@ -63,7 +63,7 @@ public struct RealShadow: ViewModifier {
             .modifier(InnerShadowLayer(
                 content: content,
                 color: color,
-                radius: dynamicRadius(radius),
+                radius: dynamicRadius(radius/2),
                 opacity: opacity,
                 xOffset: xOffset,
                 yOffset: yOffset
