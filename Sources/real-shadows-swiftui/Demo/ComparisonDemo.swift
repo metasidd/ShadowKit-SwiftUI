@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ComparisonDemo: View {
     @State private var color: Color = Color.black.opacity(0.25)
-    @State private var shadowRadius: CGFloat = 8
+    @State private var shadowRadius: CGFloat = 32
     @State private var xOffset: CGFloat = 0
     @State private var yOffset: CGFloat = 0
 
@@ -27,6 +27,7 @@ struct ComparisonDemo: View {
                 radiusControl
             }
         }
+        .fontDesign(.monospaced)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 32)
         .padding(.vertical, 32)
@@ -34,14 +35,15 @@ struct ComparisonDemo: View {
     }
 
     private var cardStack: some View {
-        VStack(alignment: .leading, spacing: 32) {
+        VStack(alignment: .leading, spacing: 48) {
             traditionalCard
             softShadowCard
+            gradientShadowCard
         }
         .font(.system(size: 14))
-        .fontDesign(.monospaced)
         .foregroundStyle(Color.black)
         .frame(maxHeight: .infinity, alignment: .top)
+        .padding(.vertical, 32)
     }
 
     private var traditionalCard: some View {
@@ -59,7 +61,7 @@ struct ComparisonDemo: View {
                 y: yOffset
             )
     }
-
+    
     private var softShadowCard: some View {
         Text("Soft Shadow")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -70,6 +72,22 @@ struct ComparisonDemo: View {
             .compositingGroup()
             .softShadow(
                 color: color,
+                radius: shadowRadius,
+                x: xOffset,
+                y: yOffset
+            )
+    }
+    
+    private var gradientShadowCard: some View {
+        Text("Gradient Shadow")
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .background {
+                RoundedRectangle(cornerRadius: 0, style: .continuous)
+                    .fill(.white)
+            }
+            .compositingGroup()
+            .gradientShadow(
+                color: [Color.blue, Color.yellow, Color.pink],
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset
