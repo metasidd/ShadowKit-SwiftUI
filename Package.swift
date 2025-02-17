@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "soft-shadows-swiftui",
     platforms: [
-        .iOS(.v17), 
-        .macOS(.v13)
+        .iOS(.v17),
+        .macOS(.v13),
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -22,6 +22,5 @@ let package = Package(
         .target(
             name: "soft-shadows-swiftui"
         ),
-
     ]
 )

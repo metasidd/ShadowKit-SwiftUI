@@ -1,5 +1,5 @@
 //
-//  test.swift
+//  ComparisonDemo.swift
 //  real-shadows-swiftui
 //
 //  Created by Siddhant Mehta on 2025-01-16.
@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct TestShadow: View {
+struct ComparisonDemo: View {
     @State private var color: Color = Color.black.opacity(0.25)
     @State private var shadowRadius: CGFloat = 8
     @State private var xOffset: CGFloat = 0
     @State private var yOffset: CGFloat = 0
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
             Text("Comparing Shadows")
                 .font(.title2)
                 .fontWeight(.black)
-            
+
             cardStack
-            
+
             VStack(spacing: 16) {
                 xOffsetControl
                 yOffsetControl
@@ -32,7 +32,7 @@ struct TestShadow: View {
         .padding(.vertical, 32)
         .background(color.opacity(0.25))
     }
-    
+
     private var cardStack: some View {
         VStack(alignment: .leading, spacing: 32) {
             traditionalCard
@@ -43,7 +43,7 @@ struct TestShadow: View {
         .foregroundStyle(Color.black)
         .frame(maxHeight: .infinity, alignment: .top)
     }
-    
+
     private var traditionalCard: some View {
         Text("Traditional Shadow")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -59,7 +59,7 @@ struct TestShadow: View {
                 y: yOffset
             )
     }
-    
+
     private var softShadowCard: some View {
         Text("Soft Shadow")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -75,44 +75,44 @@ struct TestShadow: View {
                 y: yOffset
             )
     }
-    
+
     private var xOffsetControl: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("X Offset: \(Int(xOffset))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            
+
             Slider(
                 value: $xOffset,
-                in: -32...32,
+                in: -32 ... 32,
                 step: 1
             )
         }
     }
-    
+
     private var yOffsetControl: some View {
-        VStack(alignment: .leading,spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             Text("Y Offset: \(Int(yOffset))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            
+
             Slider(
                 value: $yOffset,
-                in: -32...32,
+                in: -32 ... 32,
                 step: 1
             )
         }
     }
-    
+
     private var radiusControl: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("Shadow Radius: \(Int(shadowRadius))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            
+
             Slider(
                 value: $shadowRadius,
-                in: 0...32,
+                in: 0 ... 32,
                 step: 1
             )
         }
@@ -120,5 +120,5 @@ struct TestShadow: View {
 }
 
 #Preview {
-    TestShadow()
+    ComparisonDemo()
 }

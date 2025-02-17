@@ -7,6 +7,4 @@
 
 import Foundation
 
-enum Elevations {
-    
-}
+enum Elevations {}

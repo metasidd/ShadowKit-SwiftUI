@@ -15,7 +15,7 @@ public extension View {
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
-        self.modifier(
+        modifier(
             SoftShadow(
                 color: color,
                 radius: radius,
@@ -24,14 +24,14 @@ public extension View {
             )
         )
     }
-    
+
     func softShadow(
         color: Color = .black,
         elevation: CGFloat = 4,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
-        self.modifier(
+        modifier(
             SoftShadow(
                 color: color,
                 radius: elevation,
