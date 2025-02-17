@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestShadow: View {
-    @State private var color: Color = .blue
+    @State private var color: Color = Color.black.opacity(0.25)
     @State private var shadowRadius: CGFloat = 8
     @State private var xOffset: CGFloat = 0
     @State private var yOffset: CGFloat = 0
@@ -30,7 +30,7 @@ struct TestShadow: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 32)
         .padding(.vertical, 32)
-        .background(Color.blue.opacity(0.25))
+        .background(color.opacity(0.25))
     }
     
     private var cardStack: some View {

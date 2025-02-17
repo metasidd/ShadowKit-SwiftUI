@@ -13,7 +13,7 @@ public struct SoftShadow: ViewModifier {
     public init(
         color: Color = .black,
         radius: CGFloat = 8,
-        opacity: Double = 0.4,
+        opacity: Double = 0.25,
         xOffset: CGFloat = 0,
         yOffset: CGFloat = 0
     ) {

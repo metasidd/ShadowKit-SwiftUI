@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ElevationDemo: View {
-    private let color: Color = Color.blue
+    private let color: Color = Color.black.opacity(0.25)
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -16,7 +16,7 @@ struct ElevationDemo: View {
                 .font(.title2)
                 .fontWeight(.black)
             
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 16) {
                 ForEach(1..<7) { index in
                     softShadowCard(elevation: index * 4)
                 }
