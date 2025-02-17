@@ -24,4 +24,20 @@ public extension View {
             )
         )
     }
-} 
+    
+    func softShadow(
+        color: Color = .black,
+        elevation: CGFloat = 4,
+        x: CGFloat = 0,
+        y: CGFloat = 0
+    ) -> some View {
+        self.modifier(
+            SoftShadow(
+                color: color,
+                radius: elevation,
+                xOffset: x == 0 ? 0 : x + (elevation / 2),
+                yOffset: y == 0 ? 0 : y + (elevation / 2)
+            )
+        )
+    }
+}

@@ -14,7 +14,11 @@ struct TestShadow: View {
     @State private var yOffset: CGFloat = 0
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 32) {
+            Text("Comparing Shadows")
+                .font(.title2)
+                .fontWeight(.black)
+            
             cardStack
             
             VStack(spacing: 16) {
@@ -23,11 +27,14 @@ struct TestShadow: View {
                 radiusControl
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 32)
+        .padding(.vertical, 32)
         .background(Color.blue.opacity(0.25))
     }
     
     private var cardStack: some View {
-        VStack(alignment: .leading, spacing: 64) {
+        VStack(alignment: .leading, spacing: 32) {
             traditionalCard
             softShadowCard
         }
@@ -35,7 +42,6 @@ struct TestShadow: View {
         .fontDesign(.monospaced)
         .foregroundStyle(Color.black)
         .frame(maxHeight: .infinity, alignment: .top)
-        .padding(64)
     }
     
     private var traditionalCard: some View {
@@ -82,8 +88,6 @@ struct TestShadow: View {
                 step: 1
             )
         }
-        .padding(.horizontal, 50)
-        .padding(.top, 30)
     }
     
     private var yOffsetControl: some View {
@@ -98,7 +102,6 @@ struct TestShadow: View {
                 step: 1
             )
         }
-        .padding(.horizontal, 50)
     }
     
     private var radiusControl: some View {
@@ -113,8 +116,6 @@ struct TestShadow: View {
                 step: 1
             )
         }
-        .padding(.horizontal, 50)
-        .padding(.bottom, 30)
     }
 }
 
