@@ -1,6 +1,6 @@
 //
 //  ComparisonDemo.swift
-//  real-shadows-swiftui
+//  ShadowKit
 //
 //  Created by Siddhant Mehta on 2025-01-16.
 //

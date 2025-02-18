@@ -3,6 +3,25 @@
 
 import SwiftUI
 
+/// A view modifier that creates realistic shadows by combining multiple layers with varying intensities.
+///
+/// `SoftShadow` improves upon SwiftUI's native shadow by using a multi-layered approach that better
+/// simulates real-world lighting conditions. Each shadow layer has different properties that combine
+/// to create a more natural-looking shadow effect.
+///
+/// Example usage:
+/// ```swift
+/// Text("Hello")
+///     .padding()
+///     .background(Color.white)
+///     .softShadow(
+///         color: .black,
+///         radius: 8,
+///         opacity: 0.25,
+///         x: 0,
+///         y: 4
+///     )
+/// ```
 public struct SoftShadow: ViewModifier {
     private let color: Color
     private let radius: CGFloat
@@ -10,6 +29,13 @@ public struct SoftShadow: ViewModifier {
     private let xOffset: CGFloat
     private let yOffset: CGFloat
 
+    /// Creates a new soft shadow modifier.
+    /// - Parameters:
+    ///   - color: The color of the shadow.
+    ///   - radius: The blur radius of the shadow.
+    ///   - opacity: The opacity of the shadow (0.0-1.0).
+    ///   - xOffset: Horizontal offset of the shadow.
+    ///   - yOffset: Vertical offset of the shadow.
     public init(
         color: Color = .black,
         radius: CGFloat = 8,
@@ -24,6 +50,9 @@ public struct SoftShadow: ViewModifier {
         self.yOffset = yOffset
     }
 
+    /// Calculates the dynamic radius based on offset magnitude.
+    /// - Parameter baseRadius: The base radius to adjust.
+    /// - Returns: An adjusted radius that takes into account the shadow's offset.
     private func dynamicRadius(_ baseRadius: CGFloat) -> CGFloat {
         let offsetMagnitude = sqrt(pow(xOffset, 2) + pow(yOffset, 2))
         let radiusMultiplier = max(1.0, 1.0 + (offsetMagnitude / 32) * 0.5)
@@ -79,6 +108,7 @@ public struct SoftShadow: ViewModifier {
             ))
     }
 
+    /// A single layer of the soft shadow effect.
     private struct InnerShadowLayer: ViewModifier {
         let content: Any
         let color: Color
@@ -89,10 +119,12 @@ public struct SoftShadow: ViewModifier {
         
         private let additionalBlur: CGFloat = 2
 
+        /// Calculates the final x-offset including dynamic adjustments.
         private var calculatedXOffset: CGFloat {
             xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
         
+        /// Calculates the final y-offset including dynamic adjustments.
         private var calculatedYOffset: CGFloat {
             yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }

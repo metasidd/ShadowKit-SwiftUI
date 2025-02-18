@@ -1,15 +1,30 @@
 //
 //  GradientShadow.swift
-//  real-shadows-swiftui
+//  ShadowKit
 //
 //  Created by Siddhant Mehta on 2025-02-17.
 //
-//  A view modifier that applies multi-layered gradient shadows to views
-//
 
-import Foundation
 import SwiftUI
 
+///  A view modifier that creates a multi-layered gradient shadow effect.
+///
+///  `GradientShadow` uses multiple layers of gradient-based shadows to create a rich,
+///  depth-enhancing effect that can use any SwiftUI gradient type.
+///
+///  Example usage:
+///  ```swift
+///  Text("Hello")
+///      .padding()
+///      .background(Color.white)
+///      .gradientShadow(
+///          gradient: LinearGradient(colors: [.blue, .purple], 
+///                                 startPoint: .topLeading,
+///                                 endPoint: .bottomTrailing),
+///          radius: 10,
+///          opacity: 0.3
+///      )
+///  ```
 public struct GradientShadow<G: GradientStyle>: ViewModifier {
     private let gradient: G
     private let radius: CGFloat
@@ -17,6 +32,13 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
     private let xOffset: CGFloat
     private let yOffset: CGFloat
 
+    /// Creates a new gradient shadow modifier.
+    /// - Parameters:
+    ///   - gradient: The gradient to use for the shadow effect.
+    ///   - radius: The blur radius of the shadow.
+    ///   - opacity: The opacity of the shadow (0.0-1.0).
+    ///   - xOffset: Horizontal offset of the shadow.
+    ///   - yOffset: Vertical offset of the shadow.
     public init(
         gradient: G,
         radius: CGFloat,
@@ -31,6 +53,9 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
         self.yOffset = yOffset
     }
 
+    /// Calculates a dynamic radius that adjusts based on the shadow's offset.
+    /// - Parameter baseRadius: The base radius to adjust.
+    /// - Returns: An adjusted radius that takes into account the shadow's offset.
     private func dynamicRadius(_ baseRadius: CGFloat) -> CGFloat {
         let offsetMagnitude = sqrt(pow(xOffset, 2) + pow(yOffset, 2))
         let radiusMultiplier = max(1.0, 1.0 + (offsetMagnitude / 32) * 0.5)
@@ -86,6 +111,7 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
             ))
     }
 
+    /// A single layer of the gradient shadow effect.
     private struct InnerShadowLayer: ViewModifier {
         let content: Any
         let gradient: G
@@ -94,10 +120,12 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
         let xOffset: CGFloat
         let yOffset: CGFloat
 
+        /// Calculates the final x-offset including dynamic adjustments.
         private var calculatedXOffset: CGFloat {
             xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
         
+        /// Calculates the final y-offset including dynamic adjustments.
         private var calculatedYOffset: CGFloat {
             yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
@@ -118,7 +146,5 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
                         .blur(radius: radius + 2)
                 }
         }
-        
-        
     }
 }
