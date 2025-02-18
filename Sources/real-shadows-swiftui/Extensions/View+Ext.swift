@@ -48,14 +48,13 @@ public extension View {
     ///   - opacity: The opacity of the shadow. Defaults to 0.25.
     ///   - x: The horizontal offset of the shadow. Defaults to 0.
     ///   - y: The vertical offset of the shadow. Defaults to 0.
-    func gradientShadow<S: ShapeStyle>(
-        gradient: S = LinearGradient(
+    func gradientShadow<G: GradientStyle>(
+        gradient: G = LinearGradient(
             colors: [.black.opacity(0.3), .black.opacity(0.1)],
             startPoint: .top,
             endPoint: .bottom
         ),
         radius: CGFloat = 8,
-        opacity: Double = 0.25,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
@@ -63,7 +62,6 @@ public extension View {
             GradientShadow(
                 gradient: gradient,
                 radius: radius,
-                opacity: opacity,
                 xOffset: x,
                 yOffset: y
             )
@@ -80,7 +78,6 @@ public extension View {
     func colorfulGradientShadow(
         colors: [Color],
         radius: CGFloat = 8,
-        opacity: Double = 0.25,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
@@ -91,7 +88,6 @@ public extension View {
                 endPoint: .bottomTrailing
             ),
             radius: radius,
-            opacity: opacity,
             x: x,
             y: y
         )

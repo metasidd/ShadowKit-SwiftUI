@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ComparisonDemo: View {
     @State private var color: Color = Color.black.opacity(0.25)
-    @State private var shadowRadius: CGFloat = 32
+    @State private var shadowRadius: CGFloat = 8
     @State private var xOffset: CGFloat = 0
     @State private var yOffset: CGFloat = 0
 
@@ -83,18 +83,17 @@ struct ComparisonDemo: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(.white)
+                    .fill(Color.white)
             }
-            .compositingGroup()
             .gradientShadow(
                 gradient: .angularGradient(
                     colors: [Color.blue, Color.pink, Color.orange],
+//                    colors: [color], // Enable to have a single color
                     center: .top,
                     startAngle: .degrees(0),
                     endAngle: .degrees(180)
                 ),
                 radius: shadowRadius,
-                opacity: 0.3,
                 x: xOffset,
                 y: yOffset
             )

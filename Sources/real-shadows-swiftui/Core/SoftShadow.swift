@@ -86,14 +86,24 @@ public struct SoftShadow: ViewModifier {
         let opacity: Double
         let xOffset: CGFloat
         let yOffset: CGFloat
+        
+        private let additionalBlur: CGFloat = 2
+
+        private var calculatedXOffset: CGFloat {
+            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+        }
+        
+        private var calculatedYOffset: CGFloat {
+            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+        }
 
         func body(content: Content) -> some View {
             content
                 .shadow(
                     color: color.opacity(opacity),
                     radius: radius,
-                    x: xOffset,
-                    y: yOffset + radius
+                    x: calculatedXOffset,
+                    y: calculatedYOffset
                 )
         }
     }

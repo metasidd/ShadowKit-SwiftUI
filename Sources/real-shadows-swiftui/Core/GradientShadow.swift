@@ -7,15 +7,15 @@
 import Foundation
 import SwiftUI
 
-public struct GradientShadow<S: ShapeStyle>: ViewModifier {
-    private let gradient: S
+public struct GradientShadow<G: GradientStyle>: ViewModifier {
+    private let gradient: G
     private let radius: CGFloat
     private let opacity: Double
     private let xOffset: CGFloat
     private let yOffset: CGFloat
 
     public init(
-        gradient: S,
+        gradient: G,
         radius: CGFloat = 8,
         opacity: Double = 0.25,
         xOffset: CGFloat = 0,
@@ -85,29 +85,39 @@ public struct GradientShadow<S: ShapeStyle>: ViewModifier {
 
     private struct InnerShadowLayer: ViewModifier {
         let content: Any
-        let gradient: S
+        let gradient: G
         let radius: CGFloat
         let opacity: Double
         let xOffset: CGFloat
         let yOffset: CGFloat
+        
+        private let additionalBlur: CGFloat = 2
+
+        private var calculatedXOffset: CGFloat {
+            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+        }
+        
+        private var calculatedYOffset: CGFloat {
+            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+        }
 
         func body(content: Content) -> some View {
             content
                 .background {
-                    GeometryReader { geometry in
-                        Rectangle()
-                            .fill(gradient)
-                            .opacity(opacity)
-                            .mask {
-                                content
-                            }
-                            .offset(
-                                x: xOffset,
-                                y: yOffset
-                            )
-                            .blur(radius: radius * 1.35)
-                    }
+                    Rectangle()
+                        .fill(gradient)
+                        .opacity(opacity)
+                        .mask {
+                            content
+                        }
+                        .offset(
+                            x: calculatedXOffset,
+                            y: calculatedYOffset
+                        )
+                        .blur(radius: radius + 2)
                 }
         }
+        
+        
     }
 }
