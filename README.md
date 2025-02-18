@@ -23,53 +23,57 @@ dependencies: [
 ]
 ```
 
-## Usage
+## Basic Shadows
 
-We've built the API ergonomically so that it's easy to replace the default shadow with a ProShadow. Just find and replace all instances of `.shadow()` with `.proShadow()`. VOILA!
+Replace your existing shadows with professional ones in one step. Just swap `.shadow()` with `.proShadow()`.
 
 ![Cover Image](/Tests/ShadowKitTests/Exports/comparison.png)
 
-### The API
-
 ```swift
-// Basic shadow with full control
 view.proShadow(
-    color: .black, // The shadow's color. Use .opacity() to adjust intensity (0.1-0.4 recommended)
-    radius: 8, // Blur radius. 4-8pts for subtle, 8-16pts for medium, 16-32pts for dramatic
-    opacity: 0.25, // Overall shadow opacity (0.0-1.0). Lower = subtle, Higher = dramatic
-    x: 0, // Horizontal offset (-32 to 32pts). Positive = right, Negative = left
-    y: 4 // Vertical offset (-32 to 32pts). Positive = down, Negative = up
-)
-
-// Quick elevation-based shadow
-view.proShadow(
-    elevation: 4 // Surface height in points:
-                 // 4pts = low elevation (subtle)
-                 // 8pts = medium elevation (cards)
-                 // 16pts = high elevation (modals)
+    color: .black.opacity(0.2), // Subtle shadow color
+    radius: 12, // Medium blur for depth
+    opacity: 0.25, // Standard opacity
+    x: 0, // Centered shadow
+    y: 6 // Slight downward offset
 )
 ```
+
+## Elevation-based Shadows
+
+Create consistent shadows across your app using elevation levels. Higher elevation means more prominent shadows.
 
 ![Cover Image](/Tests/ShadowKitTests/Exports/elevation.png)
 
 ```swift
-// Gradient shadow for creative effects
-view.proGradientShadow(
-    gradient: LinearGradient( // Supports all SwiftUI gradients
-        colors: [.blue, .clear],
-        startPoint: .top,
-        endPoint: .bottom
-    ),
-    radius: 8,
-    opacity: 0.25,
-    x: 0,
-    y: 4
-)
+// Quick elevation presets
+view.proShadow(elevation: 4) // Subtle elevation (buttons, cards)
+view.proShadow(elevation: 8) // Medium elevation (floating elements)
+view.proShadow(elevation: 16) // High elevation (modals, popovers)
 ```
+
+## Gradient Shadows
+
+Add depth with beautiful gradient shadows. Perfect for creative UI elements and branded experiences.
 
 ![Cover Image](/Tests/ShadowKitTests/Exports/gradients.png)
 
-### Example
+```swift
+view.proGradientShadow(
+    gradient: .linearGradient(
+        colors: [.blue, .purple],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    ),
+    radius: 16,
+    opacity: 0.2,
+    y: 8
+)
+```
+
+## Example Card
+
+Here's a practical example of using ShadowKit in a card component:
 
 ```swift
 struct ShadowCard: View {
@@ -85,11 +89,10 @@ struct ShadowCard: View {
         .background(Color.white)
         .cornerRadius(16)
         .proShadow(
-            color: .black.opacity(0.2), // Subtle shadow color
-            radius: 12, // Medium-high blur for cards
-            opacity: 0.25, // Standard opacity
-            x: 0, // Centered shadow
-            y: 6 // Slight downward offset
+            color: .black.opacity(0.2),
+            radius: 12,
+            opacity: 0.25,
+            y: 6
         )
     }
 }
@@ -131,3 +134,4 @@ This package is available under the MIT license. See the LICENSE file for more i
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
