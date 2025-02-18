@@ -142,6 +142,11 @@ struct ComparisonDemo: View {
     }
 }
 
-#Preview {
+#Preview("Light Mode") {
     ComparisonDemo()
+}
+
+#Preview("Dark Mode") {
+    ComparisonDemo()
+        .preferredColorScheme(.dark)
 }

@@ -1,9 +1,12 @@
 //
 //  GradientShadow.swift
-//  soft-shadows-swiftui
+//  real-shadows-swiftui
 //
 //  Created by Siddhant Mehta on 2025-02-17.
 //
+//  A view modifier that applies multi-layered gradient shadows to views
+//
+
 import Foundation
 import SwiftUI
 
@@ -16,10 +19,10 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
 
     public init(
         gradient: G,
-        radius: CGFloat = 8,
-        opacity: Double = 0.25,
-        xOffset: CGFloat = 0,
-        yOffset: CGFloat = 0
+        radius: CGFloat,
+        opacity: Double,
+        xOffset: CGFloat,
+        yOffset: CGFloat
     ) {
         self.gradient = gradient
         self.radius = radius
@@ -90,15 +93,13 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
         let opacity: Double
         let xOffset: CGFloat
         let yOffset: CGFloat
-        
-        private let additionalBlur: CGFloat = 2
 
         private var calculatedXOffset: CGFloat {
-            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
         
         private var calculatedYOffset: CGFloat {
-            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
 
         func body(content: Content) -> some View {

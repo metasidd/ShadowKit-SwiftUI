@@ -90,11 +90,11 @@ public struct SoftShadow: ViewModifier {
         private let additionalBlur: CGFloat = 2
 
         private var calculatedXOffset: CGFloat {
-            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
         
         private var calculatedYOffset: CGFloat {
-            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + additionalBlur
+            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
         }
 
         func body(content: Content) -> some View {

@@ -12,13 +12,16 @@ public extension View {
     func softShadow(
         color: Color = .black,
         radius: CGFloat = 0,
+        opacity: CGFloat = 0.25,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
-        modifier(
+        let validatedRadius = max(0, radius)
+        return modifier(
             SoftShadow(
                 color: color,
-                radius: radius,
+                radius: validatedRadius,
+                opacity: opacity,
                 xOffset: x,
                 yOffset: y
             )
@@ -28,6 +31,7 @@ public extension View {
     func softShadow(
         color: Color = .black,
         elevation: CGFloat = 4,
+        opacity: CGFloat = 0.25,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
@@ -35,6 +39,7 @@ public extension View {
             SoftShadow(
                 color: color,
                 radius: elevation,
+                opacity: opacity,
                 xOffset: x == 0 ? 0 : x + (elevation / 2),
                 yOffset: y == 0 ? 0 : y + (elevation / 2)
             )
@@ -50,10 +55,11 @@ public extension View {
     ///   - y: The vertical offset of the shadow. Defaults to 0.
     func gradientShadow<G: GradientStyle>(
         gradient: G = LinearGradient(
-            colors: [.black.opacity(0.3), .black.opacity(0.1)],
+            colors: [.red, .blue],
             startPoint: .top,
             endPoint: .bottom
         ),
+        opacity: CGFloat = 0.25,
         radius: CGFloat = 8,
         x: CGFloat = 0,
         y: CGFloat = 0
@@ -62,6 +68,7 @@ public extension View {
             GradientShadow(
                 gradient: gradient,
                 radius: radius,
+                opacity: opacity,
                 xOffset: x,
                 yOffset: y
             )
@@ -78,6 +85,7 @@ public extension View {
     func colorfulGradientShadow(
         colors: [Color],
         radius: CGFloat = 8,
+        opacity: CGFloat = 0.25,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
@@ -87,6 +95,7 @@ public extension View {
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ),
+            opacity: opacity,
             radius: radius,
             x: x,
             y: y
