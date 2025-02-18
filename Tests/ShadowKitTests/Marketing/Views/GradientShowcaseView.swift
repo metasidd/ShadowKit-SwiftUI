@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GradientShowcaseView: View {
     var body: some View {
-        HStack(spacing: 32) {
+        HStack(spacing: 48) {
             // Blue to Purple
             showcaseCard(
                 colors: [.blue, .purple],
@@ -21,16 +21,18 @@ struct GradientShowcaseView: View {
                 title: "Sunset"
             )
         }
-        .padding(60)
+        .padding(MarketingStyle.pagePadding)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(MarketingStyle.backgroundGradient.opacity(MarketingStyle.backgroundGradientOpacity))
         .background(Color.white)
     }
     
     private func showcaseCard(colors: [Color], title: String) -> some View {
-        Text(title)
+        return Text(title)
             .font(.system(.headline, design: .monospaced))
-            .frame(width: 160, height: 100)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.white)
-            .cornerRadius(12)
+            .cornerRadius(32)
             .compositingGroup()
             .proGradientShadow(
                 gradient: .linearGradient(
@@ -39,7 +41,14 @@ struct GradientShowcaseView: View {
                     endPoint: .bottomTrailing
                 ),
                 opacity: 0.2,
-                radius: 12
+                radius: 32,
+                y: 16
             )
     }
+}
+
+#Preview {
+    GradientShowcaseView()
+        .frame(width: ImageSize.width, height: ImageSize.height)
+        .previewLayout(.sizeThatFits)
 } 

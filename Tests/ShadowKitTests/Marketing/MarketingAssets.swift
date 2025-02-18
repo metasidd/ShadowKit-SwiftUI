@@ -11,12 +11,6 @@ public struct MarketingAssets {
         category: "AssetGeneration"
     )
     
-    private enum ImageSize {
-        static let width: CGFloat = 1280
-        static let height: CGFloat = 720
-        static var size: CGSize { CGSize(width: width, height: height) }
-    }
-    
     /// Generates all marketing assets
     public static func generateAssets() {
         logger.info("Starting marketing asset generation")
@@ -47,8 +41,8 @@ public struct MarketingAssets {
         // Create directory in Tests/Artifacts
         let assetsURL = packageRoot
             .appendingPathComponent("Tests")
-            .appendingPathComponent("Artifacts")
-            .appendingPathComponent("Marketing", isDirectory: true)
+            .appendingPathComponent("ShadowKitTests")
+            .appendingPathComponent("Exports", isDirectory: true)
         
         do {
             // Create directory if it doesn't exist

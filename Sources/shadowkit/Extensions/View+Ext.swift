@@ -34,7 +34,7 @@ public extension View {
     func proShadow(
         color: Color = .black,
         radius: CGFloat = 0,
-        opacity: CGFloat = 0.25,
+        opacity: CGFloat = 0.2,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
