@@ -1,3 +1,10 @@
+//
+//  View+Ext.swift
+//  ShadowKit
+//
+//  Created by Siddhant Mehta on 2025/02/18.
+//
+
 import SwiftUI
 
 public extension View {

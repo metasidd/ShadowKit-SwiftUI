@@ -1,6 +1,6 @@
 //
 //  ElevationDemo.swift
-//  soft-shadows-swiftui
+//  ShadowKit
 //
 //  Created by Siddhant Mehta on 2025-02-17.
 //
