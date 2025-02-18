@@ -7,21 +7,21 @@
 import Foundation
 import SwiftUI
 
-public struct GradientShadow: ViewModifier {
-    private let color: [Color]
+public struct GradientShadow<S: ShapeStyle>: ViewModifier {
+    private let gradient: S
     private let radius: CGFloat
     private let opacity: Double
     private let xOffset: CGFloat
     private let yOffset: CGFloat
 
     public init(
-        color: [Color] = [.black, .yellow],
+        gradient: S,
         radius: CGFloat = 8,
         opacity: Double = 0.25,
         xOffset: CGFloat = 0,
         yOffset: CGFloat = 0
     ) {
-        self.color = color
+        self.gradient = gradient
         self.radius = radius
         self.opacity = opacity
         self.xOffset = xOffset
@@ -39,7 +39,7 @@ public struct GradientShadow: ViewModifier {
             // Layer 1: Tight shadow
             .modifier(InnerShadowLayer(
                 content: content,
-                color: color,
+                gradient: gradient,
                 radius: dynamicRadius(radius / 16),
                 opacity: opacity,
                 xOffset: xOffset / 16,
@@ -48,7 +48,7 @@ public struct GradientShadow: ViewModifier {
             // Layer 2: Medium shadow
             .modifier(InnerShadowLayer(
                 content: content,
-                color: color,
+                gradient: gradient,
                 radius: dynamicRadius(radius / 8),
                 opacity: opacity,
                 xOffset: xOffset / 8,
@@ -57,7 +57,7 @@ public struct GradientShadow: ViewModifier {
             // Layer 3: Wide shadow
             .modifier(InnerShadowLayer(
                 content: content,
-                color: color,
+                gradient: gradient,
                 radius: dynamicRadius(radius / 4),
                 opacity: opacity,
                 xOffset: xOffset / 4,
@@ -66,7 +66,7 @@ public struct GradientShadow: ViewModifier {
             // Layer 4: Broader shadow
             .modifier(InnerShadowLayer(
                 content: content,
-                color: color,
+                gradient: gradient,
                 radius: dynamicRadius(radius / 2),
                 opacity: opacity,
                 xOffset: xOffset / 2,
@@ -75,7 +75,7 @@ public struct GradientShadow: ViewModifier {
             // Layer 5: Broadest shadow
             .modifier(InnerShadowLayer(
                 content: content,
-                color: color,
+                gradient: gradient,
                 radius: dynamicRadius(radius),
                 opacity: opacity,
                 xOffset: xOffset,
@@ -85,7 +85,7 @@ public struct GradientShadow: ViewModifier {
 
     private struct InnerShadowLayer: ViewModifier {
         let content: Any
-        let color: [Color]
+        let gradient: S
         let radius: CGFloat
         let opacity: Double
         let xOffset: CGFloat
@@ -95,20 +95,17 @@ public struct GradientShadow: ViewModifier {
             content
                 .background {
                     GeometryReader { geometry in
-                        LinearGradient(
-                            colors: color,
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                        .opacity(opacity)
-                        .mask {
-                            content
-                        }
-                        .offset(
-                            x: xOffset,
-                            y: yOffset
-                        )
-                        .blur(radius: radius)
+                        Rectangle()
+                            .fill(gradient)
+                            .opacity(opacity)
+                            .mask {
+                                content
+                            }
+                            .offset(
+                                x: xOffset,
+                                y: yOffset
+                            )
+                            .blur(radius: radius * 1.35)
                     }
                 }
         }

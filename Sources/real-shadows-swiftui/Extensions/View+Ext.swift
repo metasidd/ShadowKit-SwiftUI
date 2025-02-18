@@ -41,27 +41,59 @@ public extension View {
         )
     }
     
-    /// A real shadow effect that mimics the API of SwiftUI's native shadow modifier
-    /// but provides more realistic layered shadows.
-    ///
+    /// Applies a gradient shadow effect with customizable properties.
     /// - Parameters:
-    ///   - color: The color of the shadow. Defaults to black.
-    ///   - radius: The blur radius of the shadow. Defaults to 0.
+    ///   - gradient: The gradient to use for the shadow. Defaults to a subtle gray gradient.
+    ///   - radius: The blur radius of the shadow. Defaults to 8.
+    ///   - opacity: The opacity of the shadow. Defaults to 0.25.
     ///   - x: The horizontal offset of the shadow. Defaults to 0.
     ///   - y: The vertical offset of the shadow. Defaults to 0.
-    func gradientShadow(
-        color: [Color] = [Color.black, Color.black],
-        radius: CGFloat = 0,
+    func gradientShadow<S: ShapeStyle>(
+        gradient: S = LinearGradient(
+            colors: [.black.opacity(0.3), .black.opacity(0.1)],
+            startPoint: .top,
+            endPoint: .bottom
+        ),
+        radius: CGFloat = 8,
+        opacity: Double = 0.25,
         x: CGFloat = 0,
         y: CGFloat = 0
     ) -> some View {
         modifier(
             GradientShadow(
-                color: color,
+                gradient: gradient,
                 radius: radius,
+                opacity: opacity,
                 xOffset: x,
                 yOffset: y
             )
+        )
+    }
+    
+    /// Applies a colorful gradient shadow effect with customizable properties.
+    /// - Parameters:
+    ///   - colors: The colors to use in the gradient.
+    ///   - radius: The blur radius of the shadow. Defaults to 8.
+    ///   - opacity: The opacity of the shadow. Defaults to 0.25.
+    ///   - x: The horizontal offset of the shadow. Defaults to 0.
+    ///   - y: The vertical offset of the shadow. Defaults to 0.
+    func colorfulGradientShadow(
+        colors: [Color],
+        radius: CGFloat = 8,
+        opacity: Double = 0.25,
+        x: CGFloat = 0,
+        y: CGFloat = 0
+    ) -> some View {
+        gradientShadow(
+            gradient: LinearGradient(
+                colors: colors,
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            ),
+            radius: radius,
+            opacity: opacity,
+            x: x,
+            y: y
         )
     }
 }

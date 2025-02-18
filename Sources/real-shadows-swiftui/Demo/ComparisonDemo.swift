@@ -82,13 +82,19 @@ struct ComparisonDemo: View {
         Text("Gradient Shadow")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
-                RoundedRectangle(cornerRadius: 0, style: .continuous)
+                RoundedRectangle(cornerRadius: 32, style: .continuous)
                     .fill(.white)
             }
             .compositingGroup()
             .gradientShadow(
-                color: [Color.blue, Color.yellow, Color.pink],
+                gradient: .angularGradient(
+                    colors: [Color.blue, Color.pink, Color.orange],
+                    center: .top,
+                    startAngle: .degrees(0),
+                    endAngle: .degrees(180)
+                ),
                 radius: shadowRadius,
+                opacity: 0.3,
                 x: xOffset,
                 y: yOffset
             )
