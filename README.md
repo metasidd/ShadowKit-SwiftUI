@@ -1,5 +1,7 @@
 # ShadowKit
 
+![Cover Image](Tests/Artifacts/Marketing/cover.png)
+
 A SwiftUI package that provides more realistic, layered shadows that better mimic natural light behavior. This package enhances the default SwiftUI shadow implementation by using multiple shadow layers with varying intensities and spreads.
 
 ## Features
@@ -10,12 +12,6 @@ A SwiftUI package that provides more realistic, layered shadows that better mimi
 - 💨 Dynamic shadow adaptation based on offset
 - ⚡️ Lightweight implementation
 - 🌈 Support for gradient shadows
-
-## Requirements
-
-- iOS 17.0+
-- macOS 13.0+
-- Swift 6.0+
 
 ## Installation
 
@@ -30,6 +26,8 @@ dependencies: [
 ## Usage
 
 We've built the API in an ergonomic way that it's easy to replace the default shadow with a ProShadow. Just find and replace all instances of `.shadow()` with `.proShadow()`. VOILA!
+
+![Shadow Comparison](Tests/Artifacts/Marketing/comparison.png)
 
 ### The API
 
@@ -50,7 +48,11 @@ view.proShadow(
                  // 8pts = medium elevation (cards)
                  // 16pts = high elevation (modals)
 )
+```
 
+![Elevation Control](Tests/Artifacts/Marketing/elevation.png)
+
+```swift
 // Gradient shadow for creative effects
 view.proGradientShadow(
     gradient: LinearGradient( // Supports all SwiftUI gradients
@@ -64,6 +66,8 @@ view.proGradientShadow(
     y: 4
 )
 ```
+
+![Gradient Shadows](Tests/Artifacts/Marketing/gradients.png)
 
 ### Example
 
