@@ -1,8 +1,6 @@
-# ShadowKit
-
 ![Cover Image](/Tests/ShadowKitTests/Exports/cover.png)
 
-A SwiftUI package that provides more realistic, layered shadows that better mimic natural light behavior. This package enhances the default SwiftUI shadow implementation by using multiple shadow layers with varying intensities and spreads.
+ShadowKit is a SwiftUI package that provides more realistic, layered shadows that better mimic natural light behavior. This package enhances the default SwiftUI shadow implementation by using multiple shadow layers with varying intensities and spreads.
 
 ## Features
 
