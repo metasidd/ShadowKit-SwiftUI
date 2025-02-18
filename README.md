@@ -1,4 +1,4 @@
-# Soft Shadows SwiftUI
+# ShadowKit
 
 A SwiftUI package that provides more realistic, layered shadows that better mimic natural light behavior. This package enhances the default SwiftUI shadow implementation by using multiple shadow layers with varying intensities and spreads.
 
@@ -9,185 +9,91 @@ A SwiftUI package that provides more realistic, layered shadows that better mimi
 - 🔧 Fully customizable shadow properties
 - 💨 Dynamic shadow adaptation based on offset
 - ⚡️ Lightweight implementation
+- 🌈 Support for gradient shadows
+
+## Requirements
+
+- iOS 17.0+
+- macOS 13.0+
+- Swift 6.0+
 
 ## Installation
 
-### Swift Package Manager
-
-Add the following to your `Package.swift` file:
+Add the following dependency to your project:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/soft-shadows-swiftui.git", from: "1.0.0")
+    .package(url: "https://github.com/metasidd/shadowkit.git", from: "1.0.0")
 ]
 ```
 
 ## Usage
 
-### Basic Usage
+We've built the API in an ergonomic way that it's easy to replace the default shadow with a ProShadow. Just find and replace all instances of `.shadow()` with `.proShadow()`. VOILA!
+
+### The API
 
 ```swift
-import RealShadowsSwiftUI
-
-struct ContentView: View {
-    var body: some View {
-        Rectangle()
-            .fill(.white)
-            .frame(width: 200, height: 200)
-            .softShadow(radius: 8)  // Default black shadow
-    }
-}
-```
-
-### Example Configurations
-
-#### 1. Subtle Elevation
-Perfect for cards or elevated surfaces with minimal elevation:
-
-```swift
-.softShadow(
-    color: .black,
-    radius: 4,
-    x: 0,
-    y: 2
+// Basic shadow with full control
+view.proShadow(
+    color: .black, // The shadow's color. Use .opacity() to adjust intensity (0.1-0.4 recommended)
+    radius: 8, // Blur radius. 4-8pts for subtle, 8-16pts for medium, 16-32pts for dramatic
+    opacity: 0.25, // Overall shadow opacity (0.0-1.0). Lower = subtle, Higher = dramatic
+    x: 0, // Horizontal offset (-32 to 32pts). Positive = right, Negative = left
+    y: 4 // Vertical offset (-32 to 32pts). Positive = down, Negative = up
 )
-```
 
-#### 2. Medium Drop Shadow
-Ideal for floating elements or modals:
+// Quick elevation-based shadow
+view.proShadow(
+    elevation: 4 // Surface height in points:
+                 // 4pts = low elevation (subtle)
+                 // 8pts = medium elevation (cards)
+                 // 16pts = high elevation (modals)
+)
 
-```swift
-.softShadow(
-    color: .black.opacity(0.25),
+// Gradient shadow for creative effects
+view.proGradientShadow(
+    gradient: LinearGradient( // Supports all SwiftUI gradients
+        colors: [.blue, .clear],
+        startPoint: .top,
+        endPoint: .bottom
+    ),
     radius: 8,
+    opacity: 0.25,
     x: 0,
     y: 4
 )
 ```
 
-#### 3. Dramatic Shadow
-For high-emphasis elements:
+### Example
 
 ```swift
-.softShadow(
-    color: .black,
-    radius: 16,
-    x: 4,
-    y: 12
-)
-```
-
-#### 4. Colored Shadow
-For creative effects:
-
-```swift
-.softShadow(
-    color: .blue.opacity(0.3),
-    radius: 12,
-    x: 8,
-    y: 8
-)
-```
-
-#### 5. Directional Shadow
-For simulating specific light sources:
-
-```swift
-.softShadow(
-    color: .black.opacity(0.2),
-    radius: 10,
-    x: -8,  // Negative X for left-side light source
-    y: 6
-)
-```
-
-### Complete Card Example
-
-```swift
-struct ElevatedCard: View {
+struct ShadowCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Title")
                 .font(.headline)
-            Text("This is a card with realistic shadows that provide depth and elevation to your interface.")
+            Text("Description")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
         .padding(20)
-        .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(16)
-        .softShadow(
-            color: .black.opacity(0.2),
-            radius: 12,
-            x: 0,
-            y: 6
+        .proShadow(
+            color: .black.opacity(0.2), // Subtle shadow color
+            radius: 12, // Medium-high blur for cards
+            opacity: 0.25, // Standard opacity
+            x: 0, // Centered shadow
+            y: 6 // Slight downward offset
         )
     }
 }
 ```
 
-### Interactive Demo Example
-
-```swift
-struct ShadowDemo: View {
-    @State private var shadowRadius: CGFloat = 8
-    @State private var xOffset: CGFloat = 0
-    @State private var yOffset: CGFloat = 0
-    
-    var body: some View {
-        VStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.white)
-                .frame(width: 200, height: 200)
-                .softShadow(
-                    radius: shadowRadius,
-                    x: xOffset,
-                    y: yOffset
-                )
-            
-            // Controls
-            VStack {
-                Slider(value: $shadowRadius, in: 0...32) {
-                    Text("Radius")
-                }
-                Slider(value: $xOffset, in: -32...32) {
-                    Text("X Offset")
-                }
-                Slider(value: $yOffset, in: -32...32) {
-                    Text("Y Offset")
-                }
-            }
-            .padding()
-        }
-    }
-}
-```
-
-## Parameter Guide
-
-### Color
-- Default: `.black`
-- Recommended opacity range: 0.1 to 0.4
-- Use `.opacity()` to adjust shadow intensity
-
-### Radius
-- Default: `8`
-- Recommended range: 4 to 32
-- Smaller values (4-8): Subtle elevation
-- Medium values (8-16): Standard elevation
-- Larger values (16-32): Dramatic elevation
-
-### Offset (x, y)
-- Default: `0, 0`
-- Recommended range: -32 to 32
-- Positive y: Shadow appears below (common)
-- Negative y: Shadow appears above
-- x offset: Controls light source direction
-
 ## How It Works
 
-Real Shadows creates a more natural shadow effect by combining five shadow layers with different intensities and spreads:
+ShadowKit creates a more natural shadow effect by combining five shadow layers with different intensities and spreads:
 
 1. Tight shadow (1/16 of the base values)
 2. Medium shadow (1/8 of the base values)
@@ -195,7 +101,7 @@ Real Shadows creates a more natural shadow effect by combining five shadow layer
 4. Broader shadow (1/2 of the base values)
 5. Broadest shadow (full base values)
 
-This layered approach creates a more realistic shadow that better mimics how shadows appear in the physical world.
+This layered approach better mimics how shadows appear in the physical world.
 
 ## Tips for Best Results
 
@@ -213,14 +119,6 @@ This layered approach creates a more realistic shadow that better mimics how sha
    - Keep shadows subtle for most UI elements
    - Use stronger shadows sparingly for emphasis
    - Maintain consistent light source direction
-
-## Requirements
-
-- iOS 14.0+
-- macOS 11.0+
-- tvOS 14.0+
-- watchOS 7.0+
-- Swift 5.5+
 
 ## License
 
