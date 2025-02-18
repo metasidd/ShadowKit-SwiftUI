@@ -143,7 +143,7 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
                             x: calculatedXOffset,
                             y: calculatedYOffset
                         )
-                        .blur(radius: radius + 2)
+                        .blur(radius: radius + ShadowConstants.additionalBlur)
                 }
         }
     }
