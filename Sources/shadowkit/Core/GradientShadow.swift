@@ -119,11 +119,6 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
         let opacity: Double
         let xOffset: CGFloat
         let yOffset: CGFloat
-
-        /// Calculates the final x-offset including dynamic adjustments.
-        private var calculatedXOffset: CGFloat {
-            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
-        }
         
         /// Calculates the final y-offset including dynamic adjustments.
         private var calculatedYOffset: CGFloat {
@@ -140,7 +135,7 @@ public struct GradientShadow<G: GradientStyle>: ViewModifier {
                             content
                         }
                         .offset(
-                            x: calculatedXOffset,
+                            x: xOffset,
                             y: calculatedYOffset
                         )
                         .blur(radius: radius + ShadowConstants.additionalBlur)

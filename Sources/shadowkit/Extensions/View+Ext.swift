@@ -15,7 +15,7 @@ public extension View {
     ///
     /// ```swift
     /// Text("Hello World")
-    ///     .softShadow(
+    ///     .proShadow(
     ///         color: .black,
     ///         radius: 8,
     ///         opacity: 0.25,
@@ -31,7 +31,7 @@ public extension View {
     ///   - x: The horizontal offset of the shadow. Positive values move right, negative left. Defaults to 0.
     ///   - y: The vertical offset of the shadow. Positive values move down, negative up. Defaults to 0.
     /// - Returns: A view with the soft shadow effect applied.
-    func softShadow(
+    func proShadow(
         color: Color = .black,
         radius: CGFloat = 0,
         opacity: CGFloat = 0.25,
@@ -57,8 +57,8 @@ public extension View {
     ///
     /// ```swift
     /// VStack {
-    ///     Text("Card 1").softShadow(elevation: 2)
-    ///     Text("Card 2").softShadow(elevation: 8)
+    ///     Text("Card 1").proShadow(elevation: 2)
+    ///     Text("Card 2").proShadow(elevation: 8)
     /// }
     /// ```
     ///
@@ -69,7 +69,7 @@ public extension View {
     ///   - x: Additional horizontal offset. Defaults to 0.
     ///   - y: Additional vertical offset. Defaults to 0.
     /// - Returns: A view with elevation-based shadow applied.
-    func softShadow(
+    func proShadow(
         color: Color = .black,
         elevation: CGFloat = 4,
         opacity: CGFloat = 0.25,
@@ -112,7 +112,7 @@ public extension View {
     ///   - x: Horizontal offset of the shadow.
     ///   - y: Vertical offset of the shadow.
     /// - Returns: A view with the gradient shadow effect applied.
-    func gradientShadow<G: GradientStyle>(
+    func proGradientShadow<G: GradientStyle>(
         gradient: G = LinearGradient(
             colors: [.red, .blue],
             startPoint: .top,
@@ -131,47 +131,6 @@ public extension View {
                 xOffset: x,
                 yOffset: y
             )
-        )
-    }
-    
-    /// Applies a colorful gradient shadow effect with customizable colors.
-    ///
-    /// This convenience method creates a linear gradient shadow using the provided colors,
-    /// making it easy to create multi-colored shadow effects.
-    ///
-    /// ```swift
-    /// Text("Colorful Shadow")
-    ///     .colorfulGradientShadow(
-    ///         colors: [.blue, .purple, .pink],
-    ///         radius: 12,
-    ///         opacity: 0.3
-    ///     )
-    /// ```
-    ///
-    /// - Parameters:
-    ///   - colors: An array of colors to use in the gradient.
-    ///   - radius: The blur radius of the shadow.
-    ///   - opacity: The opacity of the shadow (0.0-1.0).
-    ///   - x: Horizontal offset of the shadow.
-    ///   - y: Vertical offset of the shadow.
-    /// - Returns: A view with the colorful gradient shadow effect applied.
-    func colorfulGradientShadow(
-        colors: [Color],
-        radius: CGFloat = 8,
-        opacity: CGFloat = 0.25,
-        x: CGFloat = 0,
-        y: CGFloat = 0
-    ) -> some View {
-        gradientShadow(
-            gradient: LinearGradient(
-                colors: colors,
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            ),
-            opacity: opacity,
-            radius: radius,
-            x: x,
-            y: y
         )
     }
 }

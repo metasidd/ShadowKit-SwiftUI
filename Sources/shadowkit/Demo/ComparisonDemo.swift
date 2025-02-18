@@ -35,7 +35,7 @@ struct ComparisonDemo: View {
     }
 
     private var cardStack: some View {
-        VStack(alignment: .leading, spacing: 48) {
+        VStack(alignment: .leading, spacing: 32) {
             traditionalCard
             softShadowCard
             gradientShadowCard
@@ -43,7 +43,7 @@ struct ComparisonDemo: View {
         .font(.system(size: 14))
         .foregroundStyle(Color.black)
         .frame(maxHeight: .infinity, alignment: .top)
-        .padding(.vertical, 32)
+        .padding(.vertical, 24)
     }
 
     private var traditionalCard: some View {
@@ -70,7 +70,7 @@ struct ComparisonDemo: View {
                     .fill(.white)
             }
             .compositingGroup()
-            .softShadow(
+            .proShadow(
                 color: color,
                 radius: shadowRadius,
                 x: xOffset,
@@ -85,10 +85,9 @@ struct ComparisonDemo: View {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(Color.white)
             }
-            .gradientShadow(
+            .proGradientShadow(
                 gradient: .linearGradient(
                     colors: [Color.blue, Color.pink, Color.orange],
-//                    colors: [color], // Enable to have a single color
                     startPoint: .top,
                     endPoint: .bottom
                 ),

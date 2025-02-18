@@ -118,11 +118,6 @@ public struct SoftShadow: ViewModifier {
         let yOffset: CGFloat
         
         private let additionalBlur: CGFloat = 2
-
-        /// Calculates the final x-offset including dynamic adjustments.
-        private var calculatedXOffset: CGFloat {
-            xOffset + (xOffset == 0 ? 0 : (xOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
-        }
         
         /// Calculates the final y-offset including dynamic adjustments.
         private var calculatedYOffset: CGFloat {
@@ -134,7 +129,7 @@ public struct SoftShadow: ViewModifier {
                 .shadow(
                     color: color.opacity(opacity),
                     radius: radius,
-                    x: calculatedXOffset,
+                    x: xOffset,
                     y: calculatedYOffset
                 )
         }
