@@ -35,7 +35,7 @@ struct ComparisonDemo: View {
     }
 
     private var cardStack: some View {
-        VStack(alignment: .leading, spacing: 32) {
+        VStack(alignment: .leading, spacing: 48) {
             traditionalCard
             softShadowCard
             gradientShadowCard
@@ -47,7 +47,7 @@ struct ComparisonDemo: View {
     }
 
     private var traditionalCard: some View {
-        Text("Traditional Shadow")
+        Text("Native SwiftUI Shadow")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -63,7 +63,7 @@ struct ComparisonDemo: View {
     }
     
     private var softShadowCard: some View {
-        Text("Soft Shadow")
+        Text("Pro Shadow")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -91,6 +91,7 @@ struct ComparisonDemo: View {
                     startPoint: .top,
                     endPoint: .bottom
                 ),
+                opacity: 0.15,
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset

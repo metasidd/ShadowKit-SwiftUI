@@ -121,7 +121,7 @@ public struct SoftShadow: ViewModifier {
         
         /// Calculates the final y-offset including dynamic adjustments.
         private var calculatedYOffset: CGFloat {
-            yOffset + (yOffset == 0 ? 0 : (yOffset > 0 ? 1 : -1) * radius * 0.5) + ShadowConstants.additionalBlur
+            yOffset + ((yOffset >= 0 ? 1 : -1) * radius) + ShadowConstants.additionalBlur
         }
 
         func body(content: Content) -> some View {
