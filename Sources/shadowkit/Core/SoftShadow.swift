@@ -128,7 +128,7 @@ public struct SoftShadow: ViewModifier {
             content
                 .shadow(
                     color: color.opacity(opacity),
-                    radius: radius,
+                    radius: radius + ShadowConstants.additionalBlur,
                     x: xOffset,
                     y: calculatedYOffset
                 )

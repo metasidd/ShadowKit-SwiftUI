@@ -47,7 +47,7 @@ struct ComparisonDemo: View {
     }
 
     private var traditionalCard: some View {
-        Text("Native SwiftUI Shadow")
+        Text(".shadow(...)")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -63,7 +63,7 @@ struct ComparisonDemo: View {
     }
     
     private var softShadowCard: some View {
-        Text("Pro Shadow")
+        Text(".proShadow(...)")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -79,7 +79,7 @@ struct ComparisonDemo: View {
     }
     
     private var gradientShadowCard: some View {
-        Text("Gradient Shadow")
+        Text(".proGradientShadow(...)")
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -91,7 +91,7 @@ struct ComparisonDemo: View {
                     startPoint: .top,
                     endPoint: .bottom
                 ),
-                opacity: 0.15,
+                opacity: 0.2,
                 radius: shadowRadius,
                 x: xOffset,
                 y: yOffset
@@ -141,11 +141,6 @@ struct ComparisonDemo: View {
     }
 }
 
-#Preview("Light Mode") {
+#Preview("Comparing Shadows") {
     ComparisonDemo()
-}
-
-#Preview("Dark Mode") {
-    ComparisonDemo()
-        .preferredColorScheme(.dark)
 }
