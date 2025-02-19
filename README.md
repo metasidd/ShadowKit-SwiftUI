@@ -17,8 +17,14 @@ Add the following dependency to your project:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/metasidd/shadowkit.git", from: "1.0.0")
+    .package(url: "https://github.com/metasidd/shadowkit.git", from: "0.1")
 ]
+```
+
+Then, import ShadowKit in your individual SwiftUI files.
+
+```
+import ShadowKit
 ```
 
 ## Basic Shadows
